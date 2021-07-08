@@ -65,20 +65,20 @@ int main(int argc, char *argv[]) {
     FILE *fp = open_db_file();
     char *name = argv[2];
     entry *p = load_entries(fp);
-    entry *base = p;  
+    entry *base = p;
+    int temp = 0;
     while(p != NULL)
     {
        if(strcmp(p->name, name) == 0) 
         {
             printf("%s\n",p->phone);
-            break;
+            temp = 1;
         }        
         p = p->next;
     }
-      if(p==NULL)
+      if(temp == 0)
       {
         printf("no match\n");
-        free_entries(base);
         fclose(fp);
         exit(1);
       }
