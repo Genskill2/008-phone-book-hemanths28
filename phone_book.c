@@ -75,7 +75,6 @@ int main(int argc, char *argv[]) {
     }
     if(p==NULL){
       printf("no match");
-      /*free_entries(base);*/
       fclose(fp);
       exit(1);
     }
@@ -112,8 +111,7 @@ FILE *open_db_file() {
 }
   
 void free_entries(entry *p) {
-  entry *del;
-  del = p;
+  entry *del = p;
   while(p){
     del = p;
     p = p->next;
@@ -219,7 +217,6 @@ int delete(FILE *db_file, char *name) {
       if(p==base){
         del=p;
         base=p->next;
-        /*base=p;*/
         deleted++;
         free(del);
       }else{
