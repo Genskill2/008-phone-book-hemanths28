@@ -77,7 +77,7 @@ int main(int argc, char *argv[]) {
     }
       if(p==NULL)
       {
-        printf("No match");
+        printf("no match\n");
         free_entries(base);
         fclose(fp);
         exit(1);
@@ -212,8 +212,8 @@ void list(FILE *db_file) {
   int i = 0;
   while (p!=NULL) {
     printf("%-20s : %10s\n", p->name, p->phone);
-    p=p->next;
     i++;
+    p=p->next;
   }
   /* TBD print total count */
   printf("Total Count: %d",i);
@@ -245,19 +245,19 @@ int delete(FILE *db_file, char *name) {
       {
          del = p;
          base = p -> next; 
-         free (del);
          deleted++;
+         free (del);
       }
       else
      {
         del = p; 
         prev->next = p->next;
-        free(del);
         deleted++;
+        free(del);
       }  
    }
     prev = p;
-    p =  p -> next;
+    p = p->next;
  }
  write_all_entries(base);
  free_entries(base);
