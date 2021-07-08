@@ -62,12 +62,7 @@ int main(int argc, char *argv[]) {
     fclose(fp);
     exit(0);
   } else if (strcmp(argv[1], "search") == 0) {  /* Handle search */
-    printf("NOT IMPLEMENTED!\n"); /* TBD  */
-    if (argc != 3) {
-      print_usage("Improper arguments for search", argv[0]);
-      exit(1);
-    }
-    
+    printf("NOT IMPLEMENTED!\n"); /* TBD  */    
     FILE *fp = open_db_file();
     char *name = argv[2];
     entry *p = load_entries(fp);
