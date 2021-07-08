@@ -81,6 +81,12 @@ int main(int argc, char *argv[]) {
         }        
         p = p->next;
     }
+      if(p==NULL){
+      printf("No match");
+      free_entries(base);
+      fclose(fp);
+      exit(1);
+    }
     free_entries(base);
     fclose(fp);
     exit(0);   
