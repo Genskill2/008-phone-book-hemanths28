@@ -208,7 +208,7 @@ void list(FILE *db_file) {
   while (p!=NULL) {
     printf("%-20s : %10s\n", p->name, p->phone);
     p=p->next;
-    i++;
+    count++;
   }
   /* TBD print total count */
   printf("Total entries: %d\n",count);
