@@ -61,8 +61,7 @@ int main(int argc, char *argv[]) {
     list(fp);
     fclose(fp);
     exit(0);
-  } else if (strcmp(argv[1], "search") == 0) {  /* Handle search */
-    printf("NOT IMPLEMENTED!\n"); /* TBD  */    
+  } else if (strcmp(argv[1], "search") == 0) {  /* Handle search */    
     FILE *fp = open_db_file();
     char *name = argv[2];
     entry *p = load_entries(fp);
@@ -76,12 +75,13 @@ int main(int argc, char *argv[]) {
         }        
         p = p->next;
     }
-      if(p==NULL){
-      printf("No match");
-      free_entries(base);
-      fclose(fp);
-      exit(1);
-    }
+      if(p==NULL)
+      {
+        printf("No match");
+        free_entries(base);
+        fclose(fp);
+        exit(1);
+      }
     free_entries(base);
     fclose(fp);
     exit(0);   
@@ -119,7 +119,7 @@ void free_entries(entry *p) {
   /* TBD */
   entry *del;
   del = p;
-  while(p != NULL)
+  while(p)
   {
     del = p;
     p = p-> next;
