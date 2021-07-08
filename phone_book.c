@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
     
     FILE *fp = open_db_file();
     char *name = argv[2];
-    entry *p = load_entries(db_file);
+    entry *p = load_entries(fp);
     entry *base = p;  
     while(p != NULL)
     {
