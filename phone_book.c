@@ -110,7 +110,7 @@ FILE *open_db_file() {
 void free_entries(entry *p) {
   /* TBD */
   entry *del = NULL;
-  while(p!==NULL)
+  while(p != NULL)
   {
     del = p;
     p = p-> next;
@@ -253,3 +253,4 @@ int delete(FILE *db_file, char *name) {
  write_all_entries(base);
  free_entries(base);
  return deleted;
+}
