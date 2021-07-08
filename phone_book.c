@@ -66,26 +66,24 @@ int main(int argc, char *argv[]) {
     char *name = argv[2];
     entry *p = load_entries(fp);
     entry *base = p;
-    int temp = 0;
     while(p != NULL)
     {
        if(strcmp(p->name, name) == 0) 
         {
             printf("%s\n",p->phone);
-            temp = 1;
+            break;
         }        
         p = p->next;
     }
-      if(temp == 0)
-      {
-        printf("no match\n");
-        fclose(fp);
-        exit(1);
-      }
     free_entries(base);
-    fclose(fp);
-    exit(0);   
-    
+    if(p == NULL)
+     {
+       printf("no match\n");
+       fclose(fp);
+       exit(1);
+     }
+     fclose(fp);
+     exit(0);   
   } else if (strcmp(argv[1], "delete") == 0) {  /* Handle delete */
     if (argc != 3) {
       print_usage("Improper arguments for delete", argv[0]);
@@ -93,7 +91,7 @@ int main(int argc, char *argv[]) {
     }
     FILE *fp = open_db_file();
     char *name = argv[2];
-    if (!delete(fp, name)) {
+    if (delete(fp, name)==0) {
       printf("no match\n");
       fclose(fp);
       exit(1);
