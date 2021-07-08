@@ -204,14 +204,14 @@ void add(char *name, char *phone) {
 void list(FILE *db_file) {
   entry *p = load_entries(db_file);
   entry *base = p;
-  int i = 0;
+  int count = 0;
   while (p!=NULL) {
     printf("%-20s : %10s\n", p->name, p->phone);
     p=p->next;
     i++;
   }
   /* TBD print total count */
-  printf("Total entries: %d\n",i);
+  printf("Total entries: %d\n",count);
   free_entries(base);
 }
 
@@ -241,7 +241,7 @@ int delete(FILE *db_file, char *name) {
          base = p -> next; 
          del = p;
          free (del);
-         deleted++;
+         deleted = 1;
          break;
          
       }
@@ -250,7 +250,7 @@ int delete(FILE *db_file, char *name) {
         del = p; 
         prev->next = p->next;
         free (del);
-        deleted++;
+        deleted = 1;
         break;
       }  
    }
