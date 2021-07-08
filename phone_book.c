@@ -140,8 +140,7 @@ void print_usage(char *message, char *progname) {
   printf("    Deletes the entry for the name in the database.\n    Prints 'no match' if there's no such name.\n");
 }
 
-entry *
-create_entry_node(char *name, char *phone) {
+entry * create_entry_node(char *name, char *phone) {
   entry *ret;
   ret = malloc(sizeof(entry));
   strcpy(ret->name, name);
@@ -210,11 +209,11 @@ void list(FILE *db_file) {
   int i = 0;
   while (p!=NULL) {
     printf("%-20s : %10s\n", p->name, p->phone);
-    i++;
     p=p->next;
+    i++;
   }
   /* TBD print total count */
-  printf("Total Count: %d",i);
+  printf("Total entries: %d",i);
   free_entries(base);
 }
 
@@ -242,16 +241,19 @@ int delete(FILE *db_file, char *name) {
       if(p == base) /* delete first node */
       {
          del = p;
-         base = p -> next; 
-         deleted++;
+         base = p -> next;
          free (del);
+         deleted++;
+         break;
+         
       }
       else
      {
         del = p; 
         prev->next = p->next;
+        free (del);
         deleted++;
-        free(del);
+        break;
       }  
    }
     prev = p;
