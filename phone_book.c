@@ -82,7 +82,6 @@ int main(int argc, char *argv[]) {
         p = p->next;
     }
     free_entries(base);
-    return search;
     fclose(fp);
     exit(0);   
     
@@ -118,7 +117,7 @@ FILE *open_db_file() {
 void free_entries(entry *p) {
   /* TBD */
   entry *del;
-  dell = p;
+  del = p;
   while(p != NULL)
   {
     del = p;
