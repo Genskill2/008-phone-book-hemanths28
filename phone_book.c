@@ -178,11 +178,14 @@ void add(char *name, char *phone) {
 void list(FILE *db_file) {
   entry *p = load_entries(db_file);
   entry *base = p;
+  int i = 0;
   while (p!=NULL) {
     printf("%-20s : %10s\n", p->name, p->phone);
     p=p->next;
+    i++;
   }
   /* TBD print total count */
+  printf("Total Count: %d",i);
   free_entries(base);
 }
 
@@ -207,9 +210,28 @@ int delete(FILE *db_file, char *name) {
       */
 
       /* TBD */
-    }
-  }
-  write_all_entries(base);
-  free_entries(base);
-  return deleted;
-}
+      if(p == base) /* delete first node */
+      {
+         del = p;
+         base = p -> next; 
+         free (del);
+         deleted++; break;
+      }
+      else
+     {
+
+        del = p; 
+        prev->next = p->next;
+        free(del);
+        deleted++; break;
+
+      }
+  
+   }
+
+    prev = p;
+    p =  p -> next;
+ }
+ write_all_entries(base);
+ free_entries(base);
+ return deleted;
