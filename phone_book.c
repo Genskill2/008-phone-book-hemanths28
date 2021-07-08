@@ -71,7 +71,6 @@ int main(int argc, char *argv[]) {
        if(strcmp(p->name, name) == 0) 
         {
             printf("%s\n",p->phone);
-            break;
         }        
         p = p->next;
     }
@@ -115,9 +114,8 @@ FILE *open_db_file() {
   
 void free_entries(entry *p) {
   /* TBD */
-  entry *del;
-  del = p;
-  while(p)
+  entry *del = NULL;
+  while(p != NULL)
   {
     del = p;
     p = p-> next;
@@ -213,7 +211,7 @@ void list(FILE *db_file) {
     i++;
   }
   /* TBD print total count */
-  printf("Total entries: %d",i);
+  printf("Total entries: %d\n",i);
   free_entries(base);
 }
 
@@ -240,8 +238,8 @@ int delete(FILE *db_file, char *name) {
       /* TBD */
       if(p == base) /* delete first node */
       {
+         base = p -> next; 
          del = p;
-         base = p -> next;
          free (del);
          deleted++;
          break;
